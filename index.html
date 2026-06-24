@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniNotes Weekly Planner</title>
+    <!-- Google Fonts: Lora (elegant serif) and Poppins (clean sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome CDN for LinkedIn & GitHub icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="theme-pastel-white">
+    <div class="planner-page">
+        <!-- TOP CONTROL PANEL (Hidden on Print) -->
+        <header class="planner-control-panel">
+            <div class="brand">
+                <span class="brand-logo">✏️</span>
+                <h1>UniNotes Weekly Planner</h1>
+            </div>
+            <div class="controls">
+                <!-- Date Picker -->
+                <div class="control-group">
+                    <label for="week-picker">Week Start (Mon):</label>
+                    <input type="date" id="week-picker" class="planner-input-date">
+                </div>
+                <!-- Theme Switcher -->
+                <div class="control-group">
+                    <label for="theme-selector">Theme:</label>
+                    <select id="theme-selector" class="planner-select">
+                        <option value="theme-pastel-white">Classic Pastel</option>
+                        <option value="theme-pastel-cream">Warm Cream</option>
+                        <option value="theme-pastel-dusk">Pastel Dusk</option>
+                    </select>
+                </div>
+                <!-- Actions -->
+                <div class="action-buttons">
+                    <button id="btn-print" class="btn btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+                        Print Planner
+                    </button>
+                    <button id="btn-clear" class="btn btn-danger">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                        Clear Week
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN PLANNER SHEET (Printable Paper Layout) -->
+        <main class="planner-sheet">
+            <!-- Planner Header Title (Printed and Web view) -->
+            <div class="printable-header">
+                <div class="printable-title-container">
+                    <span class="printable-badge">Weekly Plan</span>
+                    <h2 id="planner-week-title" class="serif-title">Week of June 22, 2026</h2>
+                </div>
+                <div class="planner-logo-watermark">uninotes</div>
+            </div>
+
+            <!-- TOP ROW SECTION (Focus, Priorities, & Status Summary) -->
+            <section class="top-row-grid">
+                <!-- Focus Notepad Card -->
+                <div class="notepad-card focus-card">
+                    <div class="card-header">
+                        <h3 class="serif-title">This Week's Focus</h3>
+                    </div>
+                    <div class="notepad-content">
+                        <textarea id="focus-textarea" placeholder="Write this week's primary focus or affirmation here..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Priorities Card -->
+                <div class="notepad-card priorities-card">
+                    <div class="card-header">
+                        <h3 class="serif-title">Weekly Priorities</h3>
+                    </div>
+                    <div class="notepad-list" id="priorities-list">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- HABITS TRACKER SECTION -->
+            <section class="habits-section">
+                <div class="section-header">
+                    <h3 class="serif-title">Habit Tracker</h3>
+                </div>
+                <div class="habits-table-wrapper">
+                    <table class="habits-table">
+                        <thead>
+                            <tr>
+                                <th class="col-habit">Habit</th>
+                                <th class="col-day">Mon</th>
+                                <th class="col-day">Tue</th>
+                                <th class="col-day">Wed</th>
+                                <th class="col-day">Thu</th>
+                                <th class="col-day">Fri</th>
+                                <th class="col-day">Sat</th>
+                                <th class="col-day">Sun</th>
+                                <th class="col-progress">Done</th>
+                            </tr>
+                        </thead>
+                        <tbody id="habits-tbody">
+                            <!-- Rendered by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="habits-actions no-print">
+                    <input type="text" id="new-habit-input" placeholder="Create a custom habit..." class="planner-input-text">
+                    <button id="btn-add-habit" class="btn btn-primary btn-sm">Add Habit</button>
+                </div>
+            </section>
+
+            <!-- DAILY PLANNER CARDS (Grid of 7 Days + 1 Notes Card) -->
+            <section class="daily-planner-grid" id="daily-planner-grid">
+                <!-- 7 Daily cards + 1 Notes card dynamically inserted here -->
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="planner-footer">
+            <div class="footer-content">
+                <span class="footer-text">UniNotes Weekly Planner &copy; 2026 • Designed & Developed by Ashish Kumar | UniHub Projects 🚀</span>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/ashish-kumar-859842250" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/ashishkumar8112008-droid" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script File -->
+    <script src="app.js"></script>
+</body>
+</html>

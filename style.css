@@ -1,0 +1,958 @@
+/* CSS Reset & Variable Definitions */
+:root {
+    --bg-page: rgb(243, 241, 237);
+    --bg-sheet: rgb(250, 250, 250);
+    --border-color: rgb(72, 63, 95);
+    --text-primary: rgb(52, 44, 75);
+    --text-secondary: rgb(95, 95, 95);
+    --text-body: rgb(70, 70, 70);
+    --border-width: 1.5px;
+    --border-radius: 8px;
+    
+    /* Day pastel backgrounds */
+    --color-sun: rgb(213, 240, 242);
+    --color-mon: rgb(255, 219, 205);
+    --color-tue: rgb(255, 228, 186);
+    --color-wed: rgb(225, 236, 192);
+    --color-thu: rgb(255, 217, 232);
+    --color-fri: rgb(255, 239, 191);
+    --color-sat: rgb(230, 220, 245);
+    
+    /* Habit Tracker Checked Colors */
+    --habit-teal: rgb(109, 203, 210);
+    --habit-coral: rgb(248, 170, 145);
+    --habit-lime: rgb(183, 211, 108);
+    --habit-pink: rgb(244, 177, 212);
+    --habit-yellow: rgb(246, 205, 92);
+    --habit-lavender: rgb(196, 185, 215);
+
+    /* UI colors */
+    --btn-primary: rgb(72, 63, 95);
+    --btn-primary-hover: rgb(52, 44, 75);
+    --btn-danger: rgb(235, 94, 85);
+    --btn-danger-hover: rgb(210, 70, 60);
+    --notepad-line: rgba(72, 63, 95, 0.12);
+}
+
+/* Warm Cream Theme Overrides */
+body.theme-pastel-cream {
+    --bg-page: rgb(238, 232, 220);
+    --bg-sheet: rgb(254, 252, 247);
+    --border-color: rgb(82, 70, 100);
+    --text-primary: rgb(58, 48, 80);
+    --notepad-line: rgba(82, 70, 100, 0.14);
+}
+
+/* Pastel Dusk (Dark Mode) Theme Overrides */
+body.theme-pastel-dusk {
+    --bg-page: rgb(34, 30, 44);
+    --bg-sheet: rgb(46, 42, 58);
+    --border-color: rgb(180, 170, 200);
+    --text-primary: rgb(240, 235, 248);
+    --text-secondary: rgb(175, 170, 190);
+    --text-body: rgb(210, 205, 220);
+    --notepad-line: rgba(180, 170, 200, 0.15);
+
+    /* Darker, readable versions of pastel colors */
+    --color-sun: rgb(58, 85, 90);
+    --color-mon: rgb(90, 68, 62);
+    --color-tue: rgb(90, 75, 55);
+    --color-wed: rgb(72, 80, 58);
+    --color-thu: rgb(90, 65, 78);
+    --color-fri: rgb(90, 80, 60);
+    --color-sat: rgb(76, 68, 90);
+
+    /* Adjust button defaults */
+    --btn-primary: rgb(180, 170, 200);
+    --btn-primary-hover: rgb(200, 190, 220);
+    --btn-danger: rgb(240, 120, 115);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-body);
+    min-height: 100vh;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.planner-page {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Control Panel (Sticky Header) */
+.planner-control-panel {
+    background-color: var(--bg-sheet);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-logo {
+    font-size: 24px;
+}
+
+.brand h1 {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.planner-input-date, .planner-select {
+    padding: 6px 12px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    background-color: var(--bg-sheet);
+    color: var(--text-body);
+    outline: none;
+}
+
+.planner-input-date:focus, .planner-select:focus {
+    border-color: var(--text-primary);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: var(--bg-sheet);
+    color: var(--text-body);
+    transition: all 0.2s ease;
+    box-shadow: 1.5px 1.5px 0px var(--border-color);
+}
+
+.btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 0.5px 0.5px 0px var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(72, 63, 95, 0.05);
+}
+
+.btn-primary {
+    background-color: var(--btn-primary);
+    color: var(--bg-sheet);
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-primary-hover);
+}
+
+.btn-danger {
+    background-color: var(--btn-danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--btn-danger-hover);
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* MAIN PLANNER SHEET */
+.planner-sheet {
+    background-color: var(--bg-sheet);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: relative;
+    box-shadow: 4px 4px 0px var(--border-color);
+}
+
+/* Printable Header Details */
+.printable-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px double var(--border-color);
+    padding-bottom: 12px;
+}
+
+.printable-title-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.printable-badge {
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.serif-title {
+    font-family: 'Lora', serif;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+#planner-week-title {
+    font-size: 28px;
+}
+
+.planner-logo-watermark {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 600;
+    opacity: 0.25;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+
+/* TOP ROW LAYOUT: FOCUS & PRIORITIES */
+.top-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.notepad-card {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-sheet);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.notepad-card .card-header {
+    padding: 10px 16px;
+    border-bottom: var(--border-width) solid var(--border-color);
+    background-color: rgba(72, 63, 95, 0.03);
+}
+
+.notepad-card .card-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Notepad Paper Lined Effect */
+.notepad-content {
+    flex-grow: 1;
+    position: relative;
+}
+
+.notepad-content textarea {
+    width: 100%;
+    height: 140px;
+    border: none;
+    resize: none;
+    outline: none;
+    padding: 10px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    line-height: 27px;
+    color: var(--text-body);
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 26px,
+        var(--notepad-line) 26px,
+        var(--notepad-line) 27px
+    );
+    background-attachment: local;
+}
+
+/* Priorities Notepad List */
+.notepad-list {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 33px,
+        var(--notepad-line) 33px,
+        var(--notepad-line) 34px
+    );
+}
+
+.priority-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 24px;
+}
+
+/* HABITS TRACKER SECTION */
+.habits-section {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 6px;
+    padding: 16px;
+    background-color: var(--bg-sheet);
+}
+
+.habits-section .section-header {
+    margin-bottom: 12px;
+}
+
+.habits-section .section-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.habits-table-wrapper {
+    overflow-x: auto;
+}
+
+.habits-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.habits-table th, .habits-table td {
+    border: 1px solid var(--border-color);
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.habits-table th {
+    font-weight: 600;
+    color: var(--text-primary);
+    background-color: rgba(72, 63, 95, 0.04);
+}
+
+.habits-table td.col-habit {
+    text-align: left;
+    font-weight: 500;
+    min-width: 160px;
+    position: relative;
+}
+
+.habits-table td.col-habit .btn-delete-habit {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--btn-danger);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.habits-table tr:hover td.col-habit .btn-delete-habit {
+    opacity: 1;
+}
+
+/* Habit Checkbox Styling */
+.habit-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: var(--bg-sheet);
+    transition: background-color 0.15s ease;
+}
+
+.habit-checkbox:checked {
+    background-color: var(--habit-color, var(--border-color));
+}
+
+.habit-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Habit Progress Indicator */
+.habit-progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(72, 63, 95, 0.08);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.habit-progress-fill {
+    height: 100%;
+    background-color: var(--habit-color, var(--border-color));
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.habits-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.planner-input-text {
+    padding: 6px 12px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    outline: none;
+    background-color: var(--bg-sheet);
+    color: var(--text-body);
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+/* DAILY PLANNER GRID (4 Columns for large screens) */
+.daily-planner-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Daily Cards */
+.daily-card {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-sheet);
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+    overflow: hidden;
+}
+
+.daily-card-header {
+    padding: 12px 14px;
+    border-bottom: var(--border-width) solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+/* Day specific colors for header */
+.daily-card.day-sun .daily-card-header { background-color: var(--color-sun); }
+.daily-card.day-mon .daily-card-header { background-color: var(--color-mon); }
+.daily-card.day-tue .daily-card-header { background-color: var(--color-tue); }
+.daily-card.day-wed .daily-card-header { background-color: var(--color-wed); }
+.daily-card.day-thu .daily-card-header { background-color: var(--color-thu); }
+.daily-card.day-fri .daily-card-header { background-color: var(--color-fri); }
+.daily-card.day-sat .daily-card-header { background-color: var(--color-sat); }
+
+/* Stationery Note card styles */
+.daily-card.notes-card-element {
+    background-color: var(--bg-sheet);
+}
+.daily-card.notes-card-element .daily-card-header {
+    background-color: rgba(72, 63, 95, 0.05);
+}
+
+.day-header-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.day-name {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.day-date {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Circular Progress Indicator */
+.progress-ring-container {
+    position: relative;
+    width: 36px;
+    height: 36px;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-circle-bg {
+    stroke: rgba(72, 63, 95, 0.12);
+}
+
+.progress-ring-circle {
+    stroke: var(--text-primary);
+    transition: stroke-dashoffset 0.35s;
+    transform-origin: 50% 50%;
+}
+
+.progress-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Checklist Rows inside Daily Cards */
+.daily-card-content {
+    padding: 8px 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        var(--notepad-line) 31px,
+        var(--notepad-line) 32px
+    );
+    background-attachment: local;
+}
+
+.tasks-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    height: 32px;
+    gap: 8px;
+    position: relative;
+    transition: background-color 0.15s ease;
+}
+
+.task-item:hover {
+    background-color: rgba(72, 63, 95, 0.03);
+}
+
+.task-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* Custom Checklist Checkbox */
+.task-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 50%; /* Circle style checkboxes for tasks */
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background-color: var(--bg-sheet);
+}
+
+.task-checkbox:checked {
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+.task-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 4.5px;
+    top: 1.5px;
+    width: 3px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+}
+
+.task-text {
+    font-size: 13px;
+    color: var(--text-body);
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    line-height: 32px;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+    opacity: 0.65;
+}
+
+/* Inline Edit Field */
+.task-edit-input {
+    flex-grow: 1;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-body);
+    height: 28px;
+    border-bottom: 1px dashed var(--border-color);
+    padding: 0;
+}
+
+/* Task Actions hover trigger */
+.task-actions {
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.task-item:hover .task-actions {
+    opacity: 1;
+}
+
+.btn-task-action {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.btn-task-action:hover {
+    color: var(--text-primary);
+    background-color: rgba(72, 63, 95, 0.08);
+}
+
+.btn-task-action.delete:hover {
+    color: var(--btn-danger);
+    background-color: rgba(235, 94, 85, 0.1);
+}
+
+.btn-task-action .icon {
+    width: 12px;
+    height: 12px;
+}
+
+/* Add Task Input Row at the bottom of the list */
+.add-task-row {
+    padding: 0 12px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px dashed var(--notepad-line);
+}
+
+.add-task-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--text-body);
+    flex-grow: 1;
+}
+
+.add-task-input::placeholder {
+    font-style: italic;
+    opacity: 0.6;
+}
+
+.btn-add-task {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add-task:hover {
+    color: var(--text-primary);
+}
+
+/* Notes Section styled textarea inside cards */
+.notes-card-textarea {
+    width: 100%;
+    height: calc(100% - 10px);
+    border: none;
+    resize: none;
+    outline: none;
+    background: transparent;
+    padding: 10px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 31px;
+    color: var(--text-body);
+    flex-grow: 1;
+}
+
+/* Footer styling */
+.planner-footer {
+    margin-top: auto;
+    background-color: var(--bg-sheet);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 12px 24px;
+    min-height: 64px;
+    box-shadow: 2px 2px 0px var(--border-color);
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.social-icon {
+    color: var(--text-secondary);
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.social-icon[aria-label="LinkedIn"]:hover {
+    color: #0077b5; /* LinkedIn Official Brand Blue */
+}
+
+.social-icon[aria-label="GitHub"]:hover {
+    color: var(--text-primary); /* Matches active theme font color */
+}
+
+/* Responsive adjustment for footer */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 16px;
+    }
+    .planner-footer {
+        padding: 16px;
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .daily-planner-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .top-row-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+    .planner-control-panel {
+        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .planner-sheet {
+        padding: 16px;
+        gap: 20px;
+    }
+    .daily-planner-grid {
+        grid-template-columns: 1fr;
+    }
+    #planner-week-title {
+        font-size: 22px;
+    }
+    .printable-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* PRINT MEDIA QUERIES (A4 landscape optimization) */
+@media print {
+    body {
+        background-color: #fff !important;
+        background: #fff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 12px;
+    }
+    
+    .planner-control-panel,
+    .no-print,
+    .add-task-row,
+    .task-actions,
+    .habits-actions,
+    .btn-delete-habit,
+    .planner-footer {
+        display: none !important;
+    }
+
+    .planner-page {
+        max-width: 100% !important;
+        gap: 0 !important;
+    }
+
+    .planner-sheet {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 10px !important;
+        gap: 16px !important;
+    }
+
+    /* Force background colors and borders to print properly */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    /* Top Row Layout for Print */
+    .top-row-grid {
+        grid-template-columns: 1fr 1.2fr !important;
+        gap: 16px !important;
+    }
+
+    .notepad-content textarea {
+        height: 120px !important;
+    }
+
+    /* Keep layout items scaled to fit on a single page */
+    .daily-planner-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .daily-card {
+        min-height: 280px !important;
+        page-break-inside: avoid;
+    }
+
+    .task-item {
+        height: 28px !important;
+    }
+
+    .task-text {
+        font-size: 11px !important;
+        line-height: 28px !important;
+    }
+
+    .habits-table th, .habits-table td {
+        padding: 6px 8px !important;
+        font-size: 11px !important;
+    }
+}
